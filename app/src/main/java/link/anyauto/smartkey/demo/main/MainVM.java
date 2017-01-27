@@ -1,6 +1,9 @@
 package link.anyauto.smartkey.demo.main;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 
 import link.anyauto.smartkey.demo.App;
 import link.anyauto.smartkey.demo.R;
@@ -21,6 +24,18 @@ import static android.app.Activity.RESULT_OK;
 public class MainVM extends BaseVMAdapter {
 
     public static final int REQ_CODE_FOR_RESULT = 1;
+
+    ServiceConnection sc = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            ToastUtil.toast(R.string.bound_success);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            ToastUtil.toast(R.string.disconnected);
+        }
+    };
 
     public String getOpenTimesLabel() {
         return App.getStr(R.string.app_opened_times, MyAppPreferencesSPBuilder.openTimes());
@@ -46,6 +61,31 @@ public class MainVM extends BaseVMAdapter {
                         .label(App.getStr(R.string.this_is_label))
                         .hint(App.getStr(R.string.this_is_hint)))
                 .goForResult(activity, REQ_CODE_FOR_RESULT);
+    }
+
+    public void startService() {
+        // demo on starting a service
+        SmartTargets.toHelloServiceSTarget().start(activity);
+    }
+
+    public void bindService() {
+        // demo on binding a service // a service should be started first before it can be bound
+        SmartTargets.toHelloServiceSTarget().bind(activity, sc, 0);
+    }
+
+    public void stopService() {
+        // demo on stopping a service
+        SmartTargets.toHelloServiceSTarget().stop(activity);
+    }
+
+    @Override
+    public void destroy() {
+        try {
+            activity.unbindService(sc);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        SmartTargets.toHelloServiceSTarget().stop(activity);
     }
 
     @Override

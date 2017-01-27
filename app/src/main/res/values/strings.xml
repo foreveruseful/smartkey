@@ -4,11 +4,16 @@
     <string name="fill_form_btn">填表单</string>
     <string name="share_btn">分享</string>
     <string name="start_activity_for_result">启动Activity获取一个Result</string>
+    <string name="start_a_service">启动一个服务</string>
+    <string name="bind_a_service">绑定一个服务</string>
+    <string name="stop_a_service">停止一个服务</string>
     <string name="app_opened_times">应用开启了%1$d次。</string>
     <string name="input_something">请输入一些东西</string>
     <string name="this_is_label">这是标签：</string>
     <string name="this_is_hint">这是输入提示</string>
     <string name="your_input">您的输入是：%1$s</string>
+    <string name="bound_success">绑定成功。</string>
+    <string name="disconnected">服务连接断开。</string>
 
     <string name="input_name_mobile_tips">请您输入姓名和电话号码！</string>
     <string name="contacts_total_label">共有联系人信息：%1$d个。</string>
@@ -27,4 +32,7 @@
     <string name="pic_too_large">图片太大，内存不够了。</string>
     <string name="share_one">分享一张图片</string>
     <string name="share_all">分享多张图片</string>
+
+    <string name="service_bound">HelloService绑定了。</string>
+    <string name="service_started">HelloService启动了。</string>
 </resources>

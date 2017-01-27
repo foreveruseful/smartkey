@@ -44,6 +44,29 @@
             android:onClick="@{() -> vm.goForAResult() }"
             />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/start_a_service"
+            android:onClick="@{() -> vm.startService()}"
+            />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bind_a_service"
+            android:onClick="@{() -> vm.bindService()}"
+            />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stop_a_service"
+            android:onClick="@{() -> vm.stopService()}"
+            />
+
     </LinearLayout>
 
 </layout>
