@@ -43,4 +43,13 @@ public abstract class ServiceTarget<T> extends Target<T> {
         in.setClass(src, getServiceClass());
         src.bindService(in, conn, flags);
     }
+
+    /**
+     * Stop the service.
+     * @param src
+     *  the context
+     */
+    public void stop(Context src) {
+        src.stopService(new Intent(src, getServiceClass()));
+    }
 }
