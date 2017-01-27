@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="itemPosition" type="id"/>
-    <item name="binding" type="id"/>
-    <item name="pl" type="id"/>
-</resources>
