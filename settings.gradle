@@ -1,0 +1,1 @@
+include ':app', ':annotation', ':apt', ':sdks', ':sdks'
