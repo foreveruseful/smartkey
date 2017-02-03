@@ -47,6 +47,30 @@ public class IntentGenerator extends Generator {
                 .returns(builderName)
                 .addStatement("return new $T()", builderName).build();
 
+        MethodSpec newBuilderWithSmart = MethodSpec.methodBuilder("newBuilder")
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(builderName)
+                .addParameter(smartName, "smart")
+                .addStatement("return new $T().replaceSmart(smart)", builderName).build();
+
+        MethodSpec buildBundle = MethodSpec.methodBuilder("buildBundle")
+                .addModifiers(Modifier.PUBLIC)
+                .returns(ClazzNames.BUNDLE)
+                .addStatement("return buildIntent().getExtras()").build();
+
+        MethodSpec fillBundle = MethodSpec.methodBuilder("fillFromSource")
+                .addModifiers(Modifier.PUBLIC)
+                .addParameter(ClazzNames.BUNDLE, "source")
+                .returns(builderName)
+                .addCode("if (source == null) { return this; }\n")
+                .addCode("return fillFromSource(new Intent().putExtras(source));").build();
+
+        MethodSpec getSmartBundle = MethodSpec.methodBuilder("getSmart")
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .returns(smartName)
+                .addParameter(ClazzNames.BUNDLE, "source")
+                .addStatement("return new $T().fillFromSource(source).getSmart()", builderName).build();
+
         MethodSpec getSmartIntent = MethodSpec.methodBuilder("getSmart")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(smartName)
@@ -98,10 +122,14 @@ public class IntentGenerator extends Generator {
                 .addField(smartField)
                 .addMethod(defaultConstructor)
                 .addMethod(newBuilder)
+                .addMethod(newBuilderWithSmart)
                 .addMethod(replaceSmart)
                 .addMethod(getSmartIntent)
+                .addMethod(getSmartBundle)
                 .addMethod(intent.build())
+                .addMethod(buildBundle)
                 .addMethod(fill.build())
+                .addMethod(fillBundle)
                 .addMethod(getSmart)
                 .addMethods(methods)
                 .build();

@@ -14,6 +14,7 @@ public class ClazzNames {
     public static final ClassName CONTEXT = ClassName.get("android.content", "Context");
     public static final ClassName CLAZZ = ClassName.get("java.lang", "Class");
     public static final ClassName INTENT = ClassName.get("android.content", "Intent");
+    public static final ClassName BUNDLE = ClassName.get("android.os", "Bundle");
     public static final ClassName INTENT_KEY_MAPPER = ClassName.get("link.anyauto.smartkey.sdks", "IntentKeyMapper");
     public static final ClassName ARRAYLIST = ClassName.get("java.util", "ArrayList");
     public static final ClassName SET = ClassName.get("java.util", "Set");
