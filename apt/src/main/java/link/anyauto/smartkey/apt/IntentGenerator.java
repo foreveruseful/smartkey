@@ -1,9 +1,9 @@
 package link.anyauto.smartkey.apt;
 
 import com.squareup.javapoet.ClassName;
-import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
@@ -27,9 +27,7 @@ public class IntentGenerator extends Generator {
     protected void genClass(ClassDescription des) {
         ClassName builderName = ClassName.get(des.pkgName, des.simpleClzName + AnnotationConstants.SUFFIX_INTENT_BUILDER);
         ClassName smartName = ClassName.get(des.pkgName, des.simpleClzName);
-        FieldSpec smartField = FieldSpec.builder(smartName, "smart")
-                .addModifiers(Modifier.PRIVATE)
-                .build();
+        ParameterizedTypeName superType = ParameterizedTypeName.get(ClazzNames.INTENT_KEY_MAPPER_BASE, builderName, smartName);
 
         MethodSpec defaultConstructor = MethodSpec.constructorBuilder()
                 .addModifiers(Modifier.PUBLIC)
@@ -50,20 +48,8 @@ public class IntentGenerator extends Generator {
         MethodSpec newBuilderWithSmart = MethodSpec.methodBuilder("newBuilder")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(builderName)
-                .addParameter(smartName, "smart")
-                .addStatement("return new $T().replaceSmart(smart)", builderName).build();
-
-        MethodSpec buildBundle = MethodSpec.methodBuilder("buildBundle")
-                .addModifiers(Modifier.PUBLIC)
-                .returns(ClazzNames.BUNDLE)
-                .addStatement("return buildIntent().getExtras()").build();
-
-        MethodSpec fillBundle = MethodSpec.methodBuilder("fillFromSource")
-                .addModifiers(Modifier.PUBLIC)
-                .addParameter(ClazzNames.BUNDLE, "source")
-                .returns(builderName)
-                .addCode("if (source == null) { return this; }\n")
-                .addCode("return fillFromSource(new Intent().putExtras(source));").build();
+                .addParameter(smartName, "fromSource")
+                .addStatement("return new $T().replaceSmart(fromSource)", builderName).build();
 
         MethodSpec getSmartBundle = MethodSpec.methodBuilder("getSmart")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
@@ -76,20 +62,6 @@ public class IntentGenerator extends Generator {
                 .returns(smartName)
                 .addParameter(ClazzNames.INTENT, "source")
                 .addStatement("return new $T().fillFromSource(source).getSmart()", builderName)
-                .build();
-
-        MethodSpec getSmart = MethodSpec.methodBuilder("getSmart")
-                .addModifiers(Modifier.PUBLIC)
-                .returns(smartName)
-                .addStatement("return smart")
-                .build();
-
-        MethodSpec replaceSmart = MethodSpec.methodBuilder("replaceSmart")
-                .addModifiers(Modifier.PUBLIC)
-                .addParameter(smartName, "smart")
-                .returns(builderName)
-                .addStatement("this.smart = smart")
-                .addStatement("return this")
                 .build();
 
         MethodSpec.Builder fill = MethodSpec.methodBuilder("fillFromSource")
@@ -118,19 +90,14 @@ public class IntentGenerator extends Generator {
 
         TypeSpec type = TypeSpec.classBuilder(builderName)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-                .addSuperinterface(ClazzNames.INTENT_KEY_MAPPER)
-                .addField(smartField)
+                .superclass(superType)
                 .addMethod(defaultConstructor)
                 .addMethod(newBuilder)
                 .addMethod(newBuilderWithSmart)
-                .addMethod(replaceSmart)
                 .addMethod(getSmartIntent)
                 .addMethod(getSmartBundle)
                 .addMethod(intent.build())
-                .addMethod(buildBundle)
                 .addMethod(fill.build())
-                .addMethod(fillBundle)
-                .addMethod(getSmart)
                 .addMethods(methods)
                 .build();
 
