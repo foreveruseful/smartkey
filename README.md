@@ -1,6 +1,8 @@
 # smartkey
 A smarter and more elegant way to manage your keys in android Intent and SharedPreferences and more.
 
+# NOTICE: The document(or tutorial) for this SmartKey hasn't been finished yet, it would come out soon.
+# 注意：关于SmartKey的文档（教程）正在编写整理中，请稍候。
 
 1. Demo on simple and easy databinding.
 > The demo app is kind of a very easy and simple databinding demo.
