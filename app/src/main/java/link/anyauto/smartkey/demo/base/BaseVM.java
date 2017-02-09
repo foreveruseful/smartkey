@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 public interface BaseVM {
     /**
-     * Please put your "new XxxVM()" before calling super.onCreate in your activity's onCreate method.
+     * Please put your "new XxxVM()" before calling super.onCreate in your activity's onCreate method or you'll have to call the vm's onCreate method yourself.
      * @param savedInstanceState
      */
     void create(Bundle savedInstanceState);
