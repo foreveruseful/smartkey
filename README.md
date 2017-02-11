@@ -4,9 +4,11 @@ A smarter and more elegant way to manage your keys in android Intent and SharedP
 # NOTICE: The document(or tutorial) for this SmartKey hasn't been finished yet, it would come out soon.
 # 注意：关于SmartKey的文档（教程）正在编写整理中，请稍候。
 # 中文相关博客文章
-[Android下如何优雅流畅地写代码](http://www.jianshu.com/p/55cc632b506f)
-[原来Activity跳转还可以这么舒畅](http://www.jianshu.com/p/c359d72b5231)
-[如何优雅地管理SharedPreferences](http://www.jianshu.com/p/bd864f5baa4e)
+> 1. [Android下如何优雅流畅地写代码](http://www.jianshu.com/p/55cc632b506f)
+>
+> 2. [原来Activity跳转还可以这么舒畅](http://www.jianshu.com/p/c359d72b5231)
+>
+> 3. [如何优雅地管理SharedPreferences](http://www.jianshu.com/p/bd864f5baa4e)
 
 1. Demo on simple and easy databinding.
 > The demo app is kind of a very easy and simple databinding demo.
