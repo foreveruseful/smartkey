@@ -83,6 +83,7 @@ public class OneTypeItemSourceListAdapter extends BaseAdapter {
             view.setTag(R.id.binding, binding);
             pl = new PositionListeners();
             pl.listeners = source.listeners;
+            view.setTag(R.id.pl, pl);
         }
         binding.setVariable(BR.item, getItem(i));
         try {
