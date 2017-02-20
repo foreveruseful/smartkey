@@ -66,4 +66,22 @@ public class IntentValueGetter {
         return value;
     }
 
+    /**
+     * <pre>
+     *  Helper to raise a base class instance to its derived class instance.
+     *  Be careful not to use this method directly in your code, as it tries to force cast any class to your desired class.
+     *  If the provided source is not actually an instance of the target type, it will throw ClassCastException
+     * </pre>
+     * @param s
+     *  The source to cast from.
+     * @param <T>
+     *  The target type.
+     * @param <S>
+     *  The source type.
+     * @return
+     *  The casted instance.
+     */
+    public static <T, S> T convert(S s) {
+        return (T) s;
+    }
 }

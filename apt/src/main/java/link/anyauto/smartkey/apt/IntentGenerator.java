@@ -122,7 +122,7 @@ public class IntentGenerator extends Generator {
             set = String.format(set, "\"" + elem.key + "\"", left);
             get = String.format(get, "\"" + elem.key + "\"");
             intent.addStatement("in." + set);
-            fill.addStatement(left + " = source." + get);
+            fill.addStatement(left + " = $T.convert(source." + get + ")", ClazzNames.INTENT_VALUE_GETTER);
         } else if(fieldType.equals(ClazzNames.PARCELABLE_ARRAYLIST)) {
             intent.addStatement("in.putParcelableArrayListExtra(\"" + key +"\", " + right);
             fill.addStatement(left + " = source.getParcelableArrayListExtra(\"" + key + "\")");
@@ -168,7 +168,11 @@ public class IntentGenerator extends Generator {
         } else if(fieldType.equals(ClazzNames.CHARSEQUENCE)) {
             fill.addStatement(left + " = source.getCharSequenceExtra(\"" + key + "\")");
         } else {
-            fill.addStatement(left + " = ($T) $T.getValue(source, \"" + key + "\", " + fieldType.toString() + ".class)", fieldType, ClazzNames.INTENT_VALUE_GETTER);
+            String tn = fieldType.toString();
+            if(tn.indexOf('<') >= 0) {
+                tn = tn.substring(0, tn.indexOf('<'));
+            }
+            fill.addStatement(left + " = ($T) $T.getValue(source, \"" + key + "\", " + tn + ".class)", fieldType, ClazzNames.INTENT_VALUE_GETTER);
         }
     }
 }
