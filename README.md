@@ -27,11 +27,15 @@ A smarter and more elegant way to manage your keys in android Intent and SharedP
 
 ## How to use all these?
 1. In your root project's build.gradle, add the following
-> At buildscript -> dependencies section:
-> classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-> then in allprojects -> repositories:
-> maven {url 'https://jitpack.io' }
-> your root build.gradle file should look like this:
+At buildscript -> dependencies section:
+```gradle
+classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+```
+then in allprojects -> repositories:
+```gradle
+maven {url 'https://jitpack.io' }
+```
+your root build.gradle file should look like this:
 ```gradle
 buildscript {
     repositories {
@@ -55,12 +59,16 @@ allprojects {
 ```
 
 2. In your module's build.gradle, add the following:
-> Add the following line in front:
-> apply plugin: 'com.neenbedankt.android-apt'
-> then add dependencies:
-> compile 'com.github.foreveruseful.smartkey:annotation:0.1.1'
-> compile 'com.github.foreveruseful.smartkey:sdks:0.1.1'
-> apt 'com.github.foreveruseful.smartkey:apt:0.1.1'
+Add the following line in front:
+```gradle
+apply plugin: 'com.neenbedankt.android-apt'
+```
+then add dependencies:
+```gradle
+compile 'com.github.foreveruseful.smartkey:annotation:0.1.1'
+compile 'com.github.foreveruseful.smartkey:sdks:0.1.1'
+apt 'com.github.foreveruseful.smartkey:apt:0.1.1'
+```
 
 3. Rebuild your project.
 Check out the app module as an example.
