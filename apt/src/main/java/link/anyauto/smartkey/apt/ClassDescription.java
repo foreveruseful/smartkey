@@ -28,7 +28,10 @@ public class ClassDescription {
         simpleClzName = clz.getSimpleName().toString();
         clzName = clz.getQualifiedName().toString();
         for (Element elem : clz.getEnclosedElements()) {
-            if (ElementKind.FIELD.equals(elem.getKind()) && !(elem.getModifiers().contains(Modifier.STATIC)) && !(elem.getModifiers().contains(Modifier.FINAL))) {
+            if (ElementKind.FIELD.equals(elem.getKind())
+                    && !(elem.getModifiers().contains(Modifier.STATIC))
+                    && !(elem.getModifiers().contains(Modifier.FINAL))
+                    && (elem.getModifiers().contains(Modifier.PUBLIC))) {
                 ElementDescription des = new ElementDescription((VariableElement) elem);
                 elements.add(des);
             }
