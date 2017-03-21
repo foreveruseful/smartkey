@@ -26,13 +26,41 @@ A smarter and more elegant way to manage your keys in android Intent and SharedP
 > Generating a SmartTargets class to manage it.
 
 ## How to use all these?
-1. Download the code.
-2. Add "classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'" dependencies into your project's in root build.gradle
-3. Copy the three modules(annotation, apt and sdks) into your project
-4. In your main module, add "apply plugin: 'com.neenbedankt.android-apt'" to the build.gradle file.
-5. Add the following into your main module's build.gradle as dependencies.
-    compile project(':annotation')
-    compile project(':sdks')
-    apt project(':apt')
-6. Rebuild your project.
+1. In your root project's build.gradle, add the following
+> At buildscript -> dependencies section:
+> classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+> then in allprojects -> repositories:
+> maven {url 'https://jitpack.io' }
+> your root build.gradle file should look like this:
+```gradle
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven {url 'https://jitpack.io' }
+    }
+}
+```
+
+2. In your module's build.gradle, add the following:
+> Add the following line in front:
+> apply plugin: 'com.neenbedankt.android-apt'
+> then add dependencies:
+> compile 'com.github.foreveruseful.smartkey:annotation:0.1.1'
+> compile 'com.github.foreveruseful.smartkey:sdks:0.1.1'
+> apt 'com.github.foreveruseful.smartkey:apt:0.1.1'
+
+3. Rebuild your project.
 Check out the app module as an example.
