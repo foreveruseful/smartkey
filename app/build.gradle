@@ -33,7 +33,7 @@ dependencies {
     compile 'com.android.support:design:25.0.1'
     testCompile 'junit:junit:4.12'
 
-    compile project(':annotation')
-    compile project(':sdks')
-    apt project(':apt')
+    compile 'com.github.foreveruseful.smartkey:annotation:0.1.1'
+    compile 'com.github.foreveruseful.smartkey:sdks:0.1.1'
+    apt 'com.github.foreveruseful.smartkey:apt:0.1.1'
 }
