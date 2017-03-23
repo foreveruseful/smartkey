@@ -33,7 +33,12 @@ dependencies {
     compile 'com.android.support:design:25.0.1'
     testCompile 'junit:junit:4.12'
 
-    compile 'com.github.foreveruseful.smartkey:annotation:0.1.2'
-    compile 'com.github.foreveruseful.smartkey:sdks:0.1.2'
-    apt 'com.github.foreveruseful.smartkey:apt:0.1.2'
+    // this is needed for build in jitpack.io
+    compile project(':annotation')
+    compile project(':sdks')
+    apt project(':apt')
+
+//    compile 'com.github.foreveruseful.smartkey:annotation:0.1.5'
+//    compile 'com.github.foreveruseful.smartkey:sdks:0.1.5'
+//    apt 'com.github.foreveruseful.smartkey:apt:0.1.5'
 }
