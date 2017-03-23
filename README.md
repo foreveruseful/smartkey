@@ -65,9 +65,9 @@ apply plugin: 'com.neenbedankt.android-apt'
 ```
 then add dependencies:
 ```gradle
-compile 'com.github.foreveruseful.smartkey:annotation:0.1.1'
-compile 'com.github.foreveruseful.smartkey:sdks:0.1.1'
-apt 'com.github.foreveruseful.smartkey:apt:0.1.1'
+compile 'com.github.foreveruseful.smartkey:annotation:0.1.2'
+compile 'com.github.foreveruseful.smartkey:sdks:0.1.2'
+apt 'com.github.foreveruseful.smartkey:apt:0.1.2'
 ```
 
 3. Rebuild your project.

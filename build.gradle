@@ -24,7 +24,7 @@ allprojects {
         options.encoding = "UTF-8"
     }
 
-    version = '0.1.1'
+    version = '0.1.2'
 }
 
 task clean(type: Delete) {
