@@ -46,12 +46,21 @@ public class TargetGenerator extends Generator {
 
     void processApp() {
         for (TargetDescriptor target : app.activities) {
+            if(target.name.contains("${")) {
+                continue;
+            }
             aHandler.addType(target);
         }
         for (TargetDescriptor target : app.activityAliases) {
+            if(target.name.contains("${")) {
+                continue;
+            }
             aHandler.addAliasType(target);
         }
         for (TargetDescriptor target : app.services) {
+            if(target.name.contains("${")) {
+                continue;
+            }
             sHandler.addType(target);
         }
     }
