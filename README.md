@@ -65,10 +65,10 @@ apply plugin: 'com.neenbedankt.android-apt'
 ```
 then add dependencies:
 ```gradle
-// please note the available history version is 0.1.1, 0.1.5, now 0.1.6
-compile 'com.github.foreveruseful.smartkey:annotation:0.1.6'
-compile 'com.github.foreveruseful.smartkey:sdks:0.1.6'
-apt 'com.github.foreveruseful.smartkey:apt:0.1.6'
+// please note the available history version is 0.1.1, 0.1.5, 0.1.6, now 0.1.7
+compile 'com.github.foreveruseful.smartkey:annotation:0.1.7'
+compile 'com.github.foreveruseful.smartkey:sdks:0.1.7'
+apt 'com.github.foreveruseful.smartkey:apt:0.1.7'
 ```
 
 3. Rebuild your project.
