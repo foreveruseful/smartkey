@@ -33,7 +33,7 @@ public class IntentValueGetter {
             // bundle implements parcelable, so it should place before parcelable.
             value = intent.getBundleExtra(key);
         } else if(Parcelable.class.isAssignableFrom(clz)) {
-            value = intent.getParcelableArrayExtra(key);
+            value = intent.getParcelableExtra(key);
         } else if(Parcelable[].class.isAssignableFrom(clz)) {
             value = intent.getParcelableArrayExtra(key);
         } else if(boolean[].class.isAssignableFrom(clz)) {
