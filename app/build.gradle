@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 25
@@ -36,7 +35,7 @@ dependencies {
     // this is needed for build in jitpack.io
     compile project(':annotation')
     compile project(':sdks')
-    apt project(':apt')
+    annotationProcessor project(':apt')
 
 //    compile 'com.github.foreveruseful.smartkey:annotation:0.1.5'
 //    compile 'com.github.foreveruseful.smartkey:sdks:0.1.5'

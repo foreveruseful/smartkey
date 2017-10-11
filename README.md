@@ -25,50 +25,21 @@ A smarter and more elegant way to manage your keys in android Intent and SharedP
 5. Managing how to start an activity or service.
 > Generating a SmartTargets class to manage it.
 
+As android-apt comes to an end, we upgraded our settings to annotationProcessor
 ## How to use all these?
 1. In your root project's build.gradle, add the following
-At buildscript -> dependencies section:
-```gradle
-classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-```
-then in allprojects -> repositories:
+At buildscript -> in allprojects -> repositories:
 ```gradle
 maven {url 'https://jitpack.io' }
 ```
-your root build.gradle file should look like this:
-```gradle
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
-
-allprojects {
-    repositories {
-        jcenter()
-        maven {url 'https://jitpack.io' }
-    }
-}
-```
 
 2. In your module's build.gradle, add the following:
-Add the following line in front:
-```gradle
-apply plugin: 'com.neenbedankt.android-apt'
-```
-then add dependencies:
+Add dependencies:
 ```gradle
 // please note the available history version is 0.1.1, 0.1.5, 0.1.6, now 0.1.7
 compile 'com.github.foreveruseful.smartkey:annotation:0.1.7'
 compile 'com.github.foreveruseful.smartkey:sdks:0.1.7'
-apt 'com.github.foreveruseful.smartkey:apt:0.1.7'
+annotationProcessor 'com.github.foreveruseful.smartkey:apt:0.1.7'
 ```
 
 3. Rebuild your project.
